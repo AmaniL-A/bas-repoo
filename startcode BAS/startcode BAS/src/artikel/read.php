@@ -14,7 +14,7 @@
 <body>
     <h1>Artikel Overzicht</h1>
     <nav>
-        <a href='../index.html'>Home</a><br>
+        <a href='../index.php'>Home</a><br>
         <a href='insert.php'>Toevoegen nieuw artikel</a><br><br>
     </nav>
     <form method="GET" action="">

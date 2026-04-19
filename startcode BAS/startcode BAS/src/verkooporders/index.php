@@ -15,7 +15,7 @@
         <h1>Admin</h1>
         <nav>
             <div class="dropdown">
-                <a href="index.html">Menu</a>
+                <a href="'../index.php'">Menu</a>
                 <div class="dropdown-content">
                     <a href="klant/read.php"> Klant beheer</a>
                     <a href="artikel/read.php">Artikelen </a>

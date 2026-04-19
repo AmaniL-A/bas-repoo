@@ -16,7 +16,7 @@
         <h1>CRUD VerkoopOrder</h1>
         <nav>
             
-                <a href="../index.html">Home</a><br><br>   
+                <a href="../index.php">Home</a><br><br>   
                 <a href="../verkooporders/insert.php">Nieuwe verkooporder toevoegen</a><br><br>   
 
             

@@ -13,7 +13,7 @@
 <body>
     <h1>CRUD Klant</h1>
     <nav>
-        <a href='../index.html'>Home</a><br>
+        <a href='../index.php'>Home</a><br>
         <a href='insert.php'>Toevoegen nieuwe klant</a><br><br>
     </nav>
     <form method="GET" action="">
