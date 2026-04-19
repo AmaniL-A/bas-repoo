@@ -49,6 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["insert"]) && $_POST["i
         $message = "Vul alstublieft alle vereiste velden in.";
     }
 }
+$verkooporder = new VerkoopOrder();
+
+$klanten = $verkooporder->getKlanten();
+$artikelen = $verkooporder->getArtikelen();
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["insert"]) && $_POST["i
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toevoegen Verkooporder</title>
-    <link rel="stylesheet" href="../verkoopOrder/styleVerkoopOrder.css">
+<link rel="stylesheet" href="../verkooporders/styleverkooporder.css">
+
 </head>
 <body>
 

@@ -1,84 +1,67 @@
 <?php
+
+
+// Autoloader classes via composer
 require '../../vendor/autoload.php';
 use Bas\classes\Klant;
 
 $klant = new Klant;
 
-// =========================
-// UPDATE UITVOEREN
-// =========================
-if(isset($_POST["update"]) && $_POST["update"] == "Wijzigen"){
+if (isset($_POST["update"]) && $_POST["update"] == "Wijzigen") {
+    // Code voor een update
+    $klantGegevens = [
+        'klantId' => $_POST['klantId'],
+        'klantNaam' => $_POST['klantNaam'],
+        'klantEmail' => $_POST['klantEmail'],
+        'klantAdres' => $_POST['klantAdres'],
+        'klantPostcode' => $_POST['klantPostcode'],
+        'klantWoonplaats' => $_POST['klantWoonplaats']
+    ];
 
-    // stuur alle POST data naar de functie
-    $klant->updateKlant($_POST);
-
-    echo '<script>alert("Klant gewijzigd")</script>';
-    echo "<script> location.replace('read.php'); </script>";
-    exit;
+    if ($klant->updateKlant($klantGegevens)) {
+        echo "Klant succesvol gewijzigd!";
+    } else {
+        echo "Er is een fout opgetreden bij het wijzigen van de klant.";
+    }
 }
 
-// =========================
-// DATA OPHALEN
-// =========================
-if (isset($_GET['klantId'])){
+if (isset($_GET['klantId'])) {
     $row = $klant->getKlant($_GET['klantId']);
+}
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Update klant</title>
-    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud</title>
+<link rel="stylesheet" href="../../style.css">
 </head>
 <body>
-
 <h1>CRUD Klant</h1>
-<h2>Wijzigen</h2>	
-
+<h2>Wijzigen</h2>    
 <form method="post">
+<input type="hidden" name="klantId" value="<?php if (isset($row)) { echo $row['klantId']; } ?>">
 
-<!-- ID (hidden) -->
-<input type="hidden" name="klantId"
-value="<?php echo $row['klantId']; ?>">
+<label for="klantNaam">Naam:</label>
+<input type="text" id="klantNaam" name="klantNaam" required value="<?php if (isset($row)) { echo $row['klantNaam']; } ?>"><br>
 
-<!-- Naam -->
-<label>Naam:</label>
-<input type="text" name="klantnaam" required
-value="<?php echo $row['klantNaam']; ?>"><br>
+<label for="klantEmail">Email:</label>
+<input type="text" id="klantEmail" name="klantEmail" required value="<?php if (isset($row)) { echo $row['klantEmail']; } ?>"><br>
 
-<!-- Email -->
-<label>Email:</label>
-<input type="email" name="klantemail" required
-value="<?php echo $row['klantEmail']; ?>"><br>
+<label for="klantAdres">Adres:</label>
+<input type="text" id="klantAdres" name="klantAdres" required value="<?php if (isset($row)) { echo $row['klantAdres']; } ?>"><br>
 
-<!-- Adres -->
-<label>Adres:</label>
-<input type="text" name="klantadres"
-value="<?php echo $row['klantAdres']; ?>"><br>
+<label for="klantPostcode">Postcode:</label>
+<input type="text" id="klantPostcode" name="klantPostcode" required value="<?php if (isset($row)) { echo $row['klantPostcode']; } ?>"><br>
 
-<!-- Postcode -->
-<label>Postcode:</label>
-<input type="text" name="klantpostcode"
-value="<?php echo $row['klantPostcode']; ?>"><br>
-
-<!-- Woonplaats -->
-<label>Woonplaats:</label>
-<input type="text" name="klantwoonplaats"
-value="<?php echo $row['klantWoonplaats']; ?>"><br><br>
+<label for="klantWoonplaats">Woonplaats:</label>
+<input type="text" id="klantWoonplaats" name="klantWoonplaats" required value="<?php if (isset($row)) { echo $row['klantWoonplaats']; } ?>"><br>
 
 <input type="submit" name="update" value="Wijzigen">
+</form><br>
 
-</form>
-
-<br>
 <a href="read.php">Terug</a>
 
 </body>
 </html>
-
-<?php
-} else {
-    echo "Geen klantId opgegeven<br>";
-}
-?>

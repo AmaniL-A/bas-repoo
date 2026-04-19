@@ -3,11 +3,23 @@
 // auteur:
 
 // Autoloader classes via composer
+
 require '../../vendor/autoload.php';
 use Bas\classes\VerkoopOrder;
 
 $verkooporder = new VerkoopOrder();
 $message = "";
+if (isset($_POST['update'])) {
+
+    $verkooporder = new VerkoopOrder();
+
+    $verkooporder->updateStatus(
+        $_POST['verkOrdId'],
+        $_POST['verkOrdStatus']
+    );
+
+    echo "Status bijgewerkt!";
+}
 
 if (isset($_POST["update"]) && $_POST["update"] == "Wijzigen") {
     $requiredFields = [
@@ -57,7 +69,8 @@ if (isset($_GET['verkOrdId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wijzigen Verkooporder</title>
-    <link rel="stylesheet" href="../verkoopOrder/styleVerkoopOrder.css">
+<link rel="stylesheet" href="../verkooporders/styleverkooporder.css">
+
 </head>
 <body>
 <h1>CRUD Verkooporder</h1>
@@ -65,6 +78,7 @@ if (isset($_GET['verkOrdId'])) {
 
 <?php if ($message): ?>
     <p><?php echo $message; ?></p>
+    
 <?php endif; ?>
 <form method="post">
     <input type="hidden" name="verkOrdId" value="<?php if (isset($row)) { echo $row['verkOrdId']; } ?>">
@@ -99,11 +113,23 @@ if (isset($_GET['verkOrdId'])) {
     </select>
     <br><br>
     <input type="submit" name="update" value="Wijzigen">
+    <form method="post">
+
+    <input type="hidden" name="verkOrdId" value="<?php echo $_GET['verkOrdId']; ?>">
+
+    <label>Status:</label>
+    <select name="verkOrdStatus">
+        <option value="Onderweg">Onderweg</option>
+        <option value="Bezorgd">Bezorgd</option>
+        <option value="In behandeling">In behandeling</option>
+        <option value="Geannuleerd">Geannuleerd</option>
+    </select>
+
+    <button type="submit" name="update">Opslaan</button>
+</form>
 </form><br>
 
 <a href="read.php">Terug</a>
 
 </body>
 </html>
-
-

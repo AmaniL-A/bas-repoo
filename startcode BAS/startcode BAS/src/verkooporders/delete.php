@@ -1,21 +1,24 @@
-<?php 
-// auteur:
+<?php
 
-// Autoloader classes via composer
 require '../../vendor/autoload.php';
+
 use Bas\classes\VerkoopOrder;
 
-if(isset($_POST["verwijderen"])){
-	
-	// Maak een object Verkooporder
-	
-	
-	// Delete VerkoopOrder op basis van NR
-	
+if (isset($_GET['verkOrdId'])) {
 
-	echo '<script>alert("VerkoopOrder verwijderd")</script>';
-	echo "<script> location.replace('read.php'); </script>";
+    $id = $_GET['verkOrdId'];
+
+    $verkooporder = new VerkoopOrder();
+
+    if ($verkooporder->deleteVerkooporder($id)) {
+        echo "Verkooporder verwijderd!";
+    } else {
+        echo "Verwijderen mislukt!";
+    }
+
+} else {
+    echo "Geen ID ontvangen!";
 }
 ?>
-
-
+<br><a href="read.php">Terug</a>
+<link rel="stylesheet" href="../verkooporders/styleverkooporder.css">

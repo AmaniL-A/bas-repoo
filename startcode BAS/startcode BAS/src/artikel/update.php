@@ -36,7 +36,7 @@ if (isset($_GET['artikelId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crud</title>
-    <link rel="stylesheet" href="../artikel/styleArtikel.css">
+   <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 <h1>CRUD Artikel</h1>
